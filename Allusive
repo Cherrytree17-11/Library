@@ -329,7 +329,7 @@ local Config = setmetatable({
 local Library = {
     _config = Config:load(game.GameId),
 
-    _choosing_keybind = false,
+    _choosing_keybind = true,
     _device = nil,
 
     _ui_open = true,
