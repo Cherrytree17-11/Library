@@ -1093,8 +1093,8 @@ function elemets:Toggle(args)
             TextLabelsliderval.TextColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 
-           cloneref(game:GetService("UserInputService")).InputChanged:Connect(function(input)
             spawn(function()
+                cloneref(game:GetService("UserInputService")).InputChanged:Connect(function(input)
                 if dragging and maingui.Enabled then
                     local mouse = cloneref(game:GetService("UserInputService")):GetMouseLocation()
                     local relativePos = mouse-fill.AbsolutePosition
@@ -1107,7 +1107,6 @@ function elemets:Toggle(args)
                     writefile(string.format("Dragon/Config/%s/sliders/%s.lua", rootid, Nameslid), tostring(value))
                 end
             end)
-        end)
 
             TextLabelsliderval:GetPropertyChangedSignal("Text"):Connect(function()
                 local value = tonumber(TextLabelsliderval.Text)
