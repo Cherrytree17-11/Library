@@ -2,9 +2,9 @@ local CoreGui = game:GetService("CoreGui")
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 
-Local UwU = {}
+local UI = {}
 
-function UwU:Watermark()
+function UI:Watermark()
     local Watermark = Instance.new("ScreenGui")
     local Holder = Instance.new("Frame")
     local Outline = Instance.new("Frame")
@@ -108,4 +108,4 @@ function UwU:Watermark()
     end)
 end
 
-return UwU
+return UI
