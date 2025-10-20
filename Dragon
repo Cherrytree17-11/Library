@@ -171,7 +171,7 @@ mobile_button.Name = "Mobile"
 mobile_button.BackgroundColor3 = Color3.fromRGB(27, 28, 33)
 mobile_button.BorderSizePixel = 0
 mobile_button.Position = UDim2.new(0.5, 0, -0.1, 0)
-mobile_button.Size = UDim2.new(0, 75, 0, 75)
+mobile_button.Size = UDim2.new(0, 65, 0, 65)
 mobile_button.AutoButtonColor = false
 mobile_button.Modal = true
 mobile_button.FontFace = Font.new("rbxasset://fonts/families/Montserrat.json", Enum.FontWeight.SemiBold)
@@ -204,7 +204,7 @@ Icon.Parent = mobile_button
 Icon.AnchorPoint = Vector2.new(0.5, 0.5)
 Icon.BackgroundTransparency = 1.0
 Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
-Icon.Size = UDim2.new(0, 15, 0, 15)
+Icon.Size = UDim2.new(0, 55, 0, 55)
 Icon.Image = "rbxassetid://99232829949960"
 
 -- Button Click Event
