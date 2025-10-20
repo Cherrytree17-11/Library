@@ -1093,36 +1093,22 @@ function elemets:Toggle(args)
             TextLabelsliderval.TextColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 
-            local inputConnection
-fill.MouseButton1Down:Connect(function()
-    dragging = true
+           cloneref(game:GetService("UserInputService")).InputChanged:Connect(function(input)
+            spawn(function()
+                if dragging and maingui.Enabled then
+                    local mouse = cloneref(game:GetService("UserInputService")):GetMouseLocation()
+                    local relativePos = mouse-fill.AbsolutePosition
+                    local percent = math.clamp(relativePos.X/Slider.AbsoluteSize.X, 0, 1)
+                    local value = math.floor(((((Max - Min) * percent) + Min) * (10 ^ decimals)) + 0.5) / (10 ^ decimals) 
+                    ts:Create(fill, TweenInfo.new(0.45), {Size = UDim2.new(percent, 0, 0, 25)}):Play()
+                    TextLabelsliderval.Text = tostring(value)
+                    Callslid(value)
+                    setconfigslider()
+                    writefile(string.format("Dragon/Config/%s/sliders/%s.lua", rootid, Nameslid), tostring(value))
+                end
+            end)
+        end)
 
-    inputConnection = UserInputService.InputChanged:Connect(function(input)
-        if dragging and input.UserInputType == Enum.UserInputType.MouseMovement and maingui.Enabled then
-            local mouse = UserInputService:GetMouseLocation()
-            local relativePos = mouse - fill.AbsolutePosition
-            local percent = math.clamp(relativePos.X / Slider.AbsoluteSize.X, 0, 1)
-            local value = math.floor(((((Max - Min) * percent) + Min) * (10 ^ decimals)) + 0.5) / (10 ^ decimals)
-
-            ts:Create(fill, TweenInfo.new(0.15), {Size = UDim2.new(percent, 0, 0, 25)}):Play()
-            TextLabelsliderval.Text = tostring(value)
-            Callslid(value)
-            setconfigslider()
-            writefile(string.format("Dragon/Config/%s/sliders/%s.lua", rootid, Nameslid), tostring(value))
-        end
-    end)
-end)
-
-UserInputService.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        dragging = false
-        if inputConnection then
-            inputConnection:Disconnect()
-            inputConnection = nil
-        end
-    end
-end)
-            
             TextLabelsliderval:GetPropertyChangedSignal("Text"):Connect(function()
                 local value = tonumber(TextLabelsliderval.Text)
                 if value then
