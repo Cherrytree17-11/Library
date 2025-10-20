@@ -384,6 +384,110 @@ function Library:notify(args5)
         end)
     end
 
+function Library:Watermark()
+    local Watermark = Instance.new("ScreenGui")
+    local Holder = Instance.new("Frame")
+    local Outline = Instance.new("Frame")
+    local Frame = Instance.new("Frame")
+    local Text = Instance.new("TextLabel")
+
+    Watermark.Name = "Watermark"
+    Watermark.Parent = CoreGui
+    Watermark.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    Holder.Name = "Holder"
+    Holder.Parent = maingui
+    Holder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Holder.BackgroundTransparency = 1.000
+    Holder.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Holder.BorderSizePixel = 0
+    Holder.Position = UDim2.new(0, 10, 0, 10)
+    Holder.Size = UDim2.new(0, 180, 0, 24)
+
+    Outline.Name = "Outline"
+    Outline.Parent = Holder
+    Outline.BackgroundColor3 = Color3.fromRGB(37, 38, 43)
+    Outline.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Outline.BorderSizePixel = 0
+    Outline.Size = UDim2.new(1, 0, 1, 0)
+
+    Frame.Name = "Frame"
+    Frame.Parent = Outline
+    Frame.BackgroundColor3 = Color3.fromRGB(22, 24, 29)
+    Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Frame.BorderSizePixel = 0
+    Frame.Position = UDim2.new(0, 1, 0, 1)
+    Frame.Size = UDim2.new(1, -2, 1, -2)
+
+    Text.Name = "Text"
+    Text.Parent = Frame
+    Text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Text.BackgroundTransparency = 1.000
+    Text.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Text.BorderSizePixel = 0
+    Text.Position = UDim2.new(0, 8, 0, 0)
+    Text.Size = UDim2.new(1, -16, 1, 0)
+    Text.Font = Enum.Font.Code
+    Text.Text = "Watermark | Example"
+    Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Text.TextSize = 14.000
+    Text.TextXAlignment = Enum.TextXAlignment.Left
+
+    Library.Watermark = Watermark
+    Library.WatermarkText = Text
+
+    -- === DRAGGABLE LOGIC ===
+    local dragging = false
+    local dragInput, dragStart, startPos
+
+    local function update(input)
+        local delta = input.Position - dragStart
+        local newPos = UDim2.new(
+            startPos.X.Scale, startPos.X.Offset + delta.X,
+            startPos.Y.Scale, startPos.Y.Offset + delta.Y
+        )
+        TweenService:Create(Holder, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            Position = newPos
+        }):Play()
+    end
+
+    Holder.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = Holder.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    Holder.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+
+    -- === AUTO SCALE ===
+    task.spawn(function()
+        while task.wait(0.2) do
+            local width = Text.TextBounds.X + 20
+            TweenService:Create(Holder, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                Size = UDim2.new(0, width, 0, 24)
+            }):Play()
+        end
+    end)
+end
+
 function Library:NewTab(args)
     local Name = args.name or "Tab"
     local Icon = args.icon or nil
