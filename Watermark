@@ -53,8 +53,8 @@ function UI:Watermark()
     Text.TextSize = 14.000
     Text.TextXAlignment = Enum.TextXAlignment.Left
 
-    Library.Watermark = Watermark
-    Library.WatermarkText = Text
+    UI.Watermark = Watermark
+    UI.WatermarkText = Text
 
     -- === DRAGGABLE LOGIC ===
     local dragging = false
