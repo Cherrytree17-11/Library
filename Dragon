@@ -65,44 +65,6 @@ if not isfolder("Dragon/Config/"..rootid) then
     makefolder("Dragon/Config/"..rootid)
 end
 
-function smoothdrag(ui)
-    local dragging
-    local dragInput
-    local dragStart
-    local startPos
-
-    local function update(input)
-        local delta = input.Position - dragStart
-        ts:Create(ui, TweenInfo.new(0.6), {Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)}):Play()
-    end
-
-    ui.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragging = true
-            dragStart = input.Position
-            startPos = ui.Position
-
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
-
-    ui.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            dragInput = input
-        end
-    end)
-
-    cloneref(game:GetService("RunService")):BindToRenderStep("Drag", Enum.RenderPriority.Input.Value, function()
-        if dragging then
-            update(dragInput)
-        end
-    end)
-end
-
 if shared.Dragonrunning then
     print("[ Gui - Executed Successfully ]")
     return
@@ -397,7 +359,6 @@ function Library:NewTab(args)
     actualtab.Position = UDim2.new(0, 0, 0, 0)
     actualtab.CanvasSize = UDim2.new(0,0,0,0)
 
-    smoothdrag(page1)
     local UICorner_6 = Instance.new("UICorner")
     UICorner_6.CornerRadius = UDim.new(0, 15)
     UICorner_6.Parent = page1
