@@ -3,7 +3,7 @@ SaveTheme = {}
 
 local themes = {
 	index = {'Dark', 'Dragon'},
-	Amethyst = {
+	Dragon = {
 		['Shadow'] = Color3.fromRGB(31, 24, 24),
 		['Background'] = Color3.fromRGB(30, 9, 9),
 		['Page'] = Color3.fromRGB(31, 24, 24),
