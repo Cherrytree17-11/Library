@@ -20,7 +20,7 @@ function UI:Watermark(Name)
     Holder.Name = "Holder"
     Holder.Parent = Watermark
     Holder.BackgroundTransparency = 1
-    Holder.Position = UDim2.new(0, 10, 0, 125)
+    Holder.Position = UDim2.new(0, 10, 0, 75)
     Holder.Size = UDim2.new(0, 180, 0, 24)
 
     Outline.Name = "Outline"
