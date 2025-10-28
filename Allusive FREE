@@ -533,7 +533,7 @@ function Library:create_ui()
     Container.AnchorPoint = Vector2.new(0.5, 0.5)
     Container.Name = 'Container'
     Container.BackgroundTransparency = 0.05000000074505806
-    Container.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
+    Container.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     Container.Position = UDim2.new(0.5, 0, 0.5, 0)
     Container.Size = UDim2.new(0, 0, 0, 0)
     Container.Active = true
@@ -591,7 +591,7 @@ function Library:create_ui()
     
     local ClientName = Instance.new('TextLabel')
     ClientName.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
-    ClientName.TextColor3 = Color3.fromRGB(150, 150, 150)
+    ClientName.TextColor3 = Color3.fromRGB(255, 0, 0)
     ClientName.TextTransparency = 0.20000000298023224
     ClientName.Text = 'Dragon FREE'
     ClientName.Name = 'ClientName'
