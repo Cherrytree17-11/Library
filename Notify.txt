@@ -1,0 +1,106 @@
+local TweenService = game:GetService("TweenService")
+
+local Notify = {}
+Notify.__index = Notify
+
+local CONFIG = {
+    Duration = 5,
+    Position = UDim2.new(1, -20, 0, 20),
+    Spacing = 10,
+    Size = UDim2.new(0, 350, 0, 70),
+    BackgroundColor = Color3.fromRGB(0, 0, 0),
+    TextColor = Color3.fromRGB(255, 255, 255),
+    AccentColor = Color3.fromRGB(232, 22, 19),
+    Font = Enum.Font.GothamBold,
+    TextSize = 16,
+}
+
+local activeNotifications = {}
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "NotifyGui"
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = game:GetService("CoreGui")
+
+local function updatePositions()
+    local totalHeight = 0
+    for _, notif in ipairs(activeNotifications) do
+        local targetPos = UDim2.new(1, -20, 0, CONFIG.Position.Y.Offset + totalHeight)
+        TweenService:Create(notif, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+            Position = targetPos
+        }):Play()
+        totalHeight = totalHeight + notif.Size.Y.Offset + CONFIG.Spacing
+    end
+end
+
+function Notify:Create(title, message)
+    local notification = Instance.new("Frame")
+    notification.Name = "NotifyFrame"
+    notification.Size = CONFIG.Size
+    notification.Position = UDim2.new(1, 20, 0, CONFIG.Position.Y.Offset)
+    notification.AnchorPoint = Vector2.new(1, 0)
+    notification.BackgroundColor3 = CONFIG.BackgroundColor
+    notification.BackgroundTransparency = 0.1
+    notification.BorderSizePixel = 0
+    notification.ClipsDescendants = true
+    notification.Parent = ScreenGui
+
+    local accentBar = Instance.new("Frame")
+    accentBar.Size = UDim2.new(0, 4, 1, 0)
+    accentBar.BackgroundColor3 = CONFIG.AccentColor
+    accentBar.BorderSizePixel = 0
+    accentBar.Parent = notification
+
+    local titleLabel = Instance.new("TextLabel")
+    titleLabel.BackgroundTransparency = 1
+    titleLabel.Font = CONFIG.Font
+    titleLabel.TextSize = CONFIG.TextSize
+    titleLabel.TextColor3 = CONFIG.TextColor
+    titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+    titleLabel.Size = UDim2.new(1, -30, 0, 20)
+    titleLabel.Position = UDim2.new(0, 15, 0, 10)
+    titleLabel.Text = title or "Notification"
+    titleLabel.TextTransparency = 1
+    titleLabel.Parent = notification
+
+    local messageLabel = Instance.new("TextLabel")
+    messageLabel.BackgroundTransparency = 1
+    messageLabel.Font = CONFIG.Font
+    messageLabel.TextSize = CONFIG.TextSize - 2
+    messageLabel.TextColor3 = CONFIG.TextColor
+    messageLabel.TextXAlignment = Enum.TextXAlignment.Left
+    messageLabel.Size = UDim2.new(1, -30, 0, 20)
+    messageLabel.Position = UDim2.new(0, 15, 0, 35)
+    messageLabel.Text = message or "Message"
+    messageLabel.TextTransparency = 1
+    messageLabel.Parent = notification
+
+    table.insert(activeNotifications, 1, notification)
+    updatePositions()
+
+    TweenService:Create(notification, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+        Position = CONFIG.Position
+    }):Play()
+    TweenService:Create(titleLabel, TweenInfo.new(0.3), {TextTransparency = 0}):Play()
+    TweenService:Create(messageLabel, TweenInfo.new(0.3), {TextTransparency = 0.2}):Play()
+
+    task.delay(CONFIG.Duration, function()
+        TweenService:Create(notification, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
+            Position = UDim2.new(1, 20, 0, notification.Position.Y.Offset)
+        }):Play()
+
+        task.wait(0.4)
+        notification:Destroy()
+
+        for i, n in ipairs(activeNotifications) do
+            if n == notification then
+                table.remove(activeNotifications, i)
+                break
+            end
+        end
+        updatePositions()
+    end)
+end
+
+return Notify

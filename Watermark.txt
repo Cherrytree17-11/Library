@@ -1,0 +1,103 @@
+local CoreGui = game:GetService("CoreGui")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+
+local UI = {}
+
+function UI:Watermark(Name)
+    Name = Name or "Hub"
+
+    local Watermark = Instance.new("ScreenGui")
+    local Holder = Instance.new("Frame")
+    local Outline = Instance.new("Frame")
+    local Frame = Instance.new("Frame")
+    local Text = Instance.new("TextLabel")
+
+    Watermark.Name = "Watermark"
+    Watermark.Parent = CoreGui
+    Watermark.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+    Holder.Name = "Holder"
+    Holder.Parent = Watermark
+    Holder.BackgroundTransparency = 1
+    Holder.Position = UDim2.new(0, 10, 0, 75)
+    Holder.Size = UDim2.new(0, 180, 0, 24)
+
+    Outline.Name = "Outline"
+    Outline.Parent = Holder
+    Outline.BackgroundColor3 = Color3.fromRGB(232, 22, 19)
+    Outline.BorderSizePixel = 0
+    Outline.Size = UDim2.new(1, 0, 1, 0)
+
+    Frame.Name = "Frame"
+    Frame.Parent = Outline
+    Frame.BackgroundColor3 = Color3.fromRGB(22, 24, 29)
+    Frame.BorderSizePixel = 0
+    Frame.Position = UDim2.new(0, 1, 0, 1)
+    Frame.Size = UDim2.new(1, -2, 1, -2)
+
+    Text.Name = "Text"
+    Text.Parent = Frame
+    Text.BackgroundTransparency = 1
+    Text.Position = UDim2.new(0, 8, 0, 0)
+    Text.Size = UDim2.new(1, -16, 1, 0)
+    Text.Font = Enum.Font.Code
+    Text.Text = string.format("[%s] | Loading...", Name)
+    Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Text.TextSize = 14
+    Text.TextXAlignment = Enum.TextXAlignment.Left
+
+    UI.Watermark = Watermark
+    UI.WatermarkText = Text
+
+    local dragging = false
+    local dragInput, dragStart, startPos
+
+    local function update(input)
+        local delta = input.Position - dragStart
+        local newPos = UDim2.new(
+            startPos.X.Scale, startPos.X.Offset + delta.X,
+            startPos.Y.Scale, startPos.Y.Offset + delta.Y
+        )
+        TweenService:Create(Holder, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+            Position = newPos
+        }):Play()
+    end
+
+    Holder.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = Holder.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    Holder.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+
+    task.spawn(function()
+        while task.wait(0.01) do
+            local width = Text.TextBounds.X + 20
+            TweenService:Create(Holder, TweenInfo.new(0.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+                Size = UDim2.new(0, width, 0, 24)
+            }):Play()
+        end
+    end)
+end
+
+return UI
