@@ -540,28 +540,15 @@ function Library:create_ui()
     Container.BorderSizePixel = 0
     Container.Parent = Dragon
 
-local Gradient = Instance.new("UIGradient")
-Gradient.Color = ColorSequence.new{
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-    ColorSequenceKeypoint.new(0.42, Color3.fromRGB(30, 9, 9)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(232, 22, 19))
+    local Gradient = Instance.new("UIGradient")
+    Gradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+        ColorSequenceKeypoint.new(0.42, Color3.fromRGB(30, 9, 9)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(232, 22, 19))
 }
 
-Gradient.Rotation = 90
-Gradient.Parent = Container
-
-local LogoBG = Instance.new("ImageLabel")
-LogoBG.Name = "LogoBG"
-LogoBG.Size = UDim2.new(0.8, 0, 0.8, 0)
-LogoBG.AnchorPoint = Vector2.new(0.5, 0.5)
-LogoBG.Position = UDim2.new(0.5, 0, 0.5, 0)
-LogoBG.BackgroundTransparency = 1
-LogoBG.Image = "rbxassetid://99232829949960"
-LogoBG.ImageTransparency = 0.5
-LogoBG.ScaleType = Enum.ScaleType.Fit
-LogoBG.ZIndex = 0
-LogoBG.ImageColor3 = Color3.fromRGB(232, 22, 19)
-LogoBG.Parent = Container
+    Gradient.Rotation = 90
+    Gradient.Parent = Container
     
     local UICorner = Instance.new('UICorner')
     UICorner.CornerRadius = UDim.new(0, 10)
@@ -604,9 +591,9 @@ LogoBG.Parent = Container
     
     local ClientName = Instance.new('TextLabel')
     ClientName.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
-    ClientName.TextColor3 = Color3.fromRGB(255, 0, 0)
+    ClientName.TextColor3 = Color3.fromRGB(150, 150, 150)
     ClientName.TextTransparency = 0.20000000298023224
-    ClientName.Text = 'Dragon BETA'
+    ClientName.Text = 'Dragon FREE'
     ClientName.Name = 'ClientName'
     ClientName.Size = UDim2.new(0, 31, 0, 13)
     ClientName.AnchorPoint = Vector2.new(0, 0.5)
