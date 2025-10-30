@@ -2057,7 +2057,7 @@ function Airflow:Elements(element : Frame,OnChange : BindableEvent , windowConfi
 				});
 			else
 				Airflow:CreateAnimation(circle,0.5,nil,{
-					BackgroundColor3 = Color3.fromRGB(216, 216, 216),
+					BackgroundColor3 = Color3.fromRGB(30, 9, 9),
 					Position = UDim2.new(0.25, 0, 0.5, 0)
 				});
 			end;
@@ -4989,7 +4989,7 @@ if Airflow:IsMobile() then
     ToggleBtn.Name = "MobileToggle"
     ToggleBtn.Parent = AirflowWindow
     ToggleBtn.AnchorPoint = Vector2.new(1, 0)
-    ToggleBtn.Position = UDim2.new(1, -8, 0, 90)
+    ToggleBtn.Position = UDim2.new(1, -8, 0, 100)
     ToggleBtn.Size = UDim2.new(0, 60, 0, 60)
     ToggleBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
     ToggleBtn.BackgroundTransparency = 0
