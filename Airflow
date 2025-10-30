@@ -4990,7 +4990,7 @@ if Airflow:IsMobile() then
     ToggleBtn.Parent = AirflowWindow
     ToggleBtn.AnchorPoint = Vector2.new(1, 0)
     ToggleBtn.Position = UDim2.new(1, -8, 0, 40)
-    ToggleBtn.Size = UDim2.new(0, 50, 0, 50)
+    ToggleBtn.Size = UDim2.new(0, 70, 0, 70)
     ToggleBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
     ToggleBtn.BackgroundTransparency = 0
     ToggleBtn.Image = "rbxassetid://99232829949960"
