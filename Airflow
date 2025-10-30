@@ -4989,7 +4989,7 @@ if Airflow:IsMobile() then
     ToggleBtn.Name = "MobileToggle"
     ToggleBtn.Parent = AirflowWindow
     ToggleBtn.AnchorPoint = Vector2.new(1, 0)
-    ToggleBtn.Position = UDim2.new(1, -8, 0, 40)
+    ToggleBtn.Position = UDim2.new(1, -8, 0, 70)
     ToggleBtn.Size = UDim2.new(0, 60, 0, 60)
     ToggleBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
     ToggleBtn.BackgroundTransparency = 0
@@ -5003,9 +5003,9 @@ if Airflow:IsMobile() then
     corner.CornerRadius = UDim.new(0, 12)
 
     local stroke = Instance.new("UIStroke", ToggleBtn)
-    stroke.Thickness = 2
+    stroke.Thickness = 1
     stroke.Color = Color3.fromRGB(255, 255, 255)
-    stroke.Transparency = 1
+    stroke.Transparency = 0
 
     local dragging = false
     local dragStart, startPos
