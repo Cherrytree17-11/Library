@@ -4985,7 +4985,7 @@ function Airflow:Init(config)
 	end;
 
 if Airflow:IsMobile() then
-    local ToggleBtn = Instance.new("TextButton")
+    local ToggleBtn = Instance.new("ImageButton")
     ToggleBtn.Name = "MobileToggle"
     ToggleBtn.Parent = AirflowWindow
     ToggleBtn.AnchorPoint = Vector2.new(1, 0)
@@ -4993,10 +4993,8 @@ if Airflow:IsMobile() then
     ToggleBtn.Size = UDim2.new(0, 50, 0, 50)
     ToggleBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
     ToggleBtn.BackgroundTransparency = 0
-    ToggleBtn.Text = "D"
-    ToggleBtn.Font = Enum.Font.Gotham
-    ToggleBtn.TextSize = 16
-    ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ToggleBtn.Image = "rbxassetid://99232829949960"
+    ToggleBtn.ScaleType = Enum.ScaleType.Fit
     ToggleBtn.AutoButtonColor = true
     ToggleBtn.ZIndex = 9999
     ToggleBtn.Active = true
