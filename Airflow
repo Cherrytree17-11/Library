@@ -4985,62 +4985,69 @@ function Airflow:Init(config)
 	end;
 
 if Airflow:IsMobile() then
-    local ToggleBtn = Instance.new("TextButton")
-    ToggleBtn.Name = "MobileToggle"
-    ToggleBtn.Parent = AirflowWindow
-    ToggleBtn.AnchorPoint = Vector2.new(1, 0)
-    ToggleBtn.Position = UDim2.new(1, -8, 0, 40) -- sát rìa phải, hơi thấp xuống
-    ToggleBtn.Size = UDim2.new(0, 50, 0, 50)
-    ToggleBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-    ToggleBtn.BackgroundTransparency = 0
-    ToggleBtn.Text = "B"
-    ToggleBtn.Font = Enum.Font.GothamBold
-    ToggleBtn.TextSize = 16
-    ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-    ToggleBtn.AutoButtonColor = true
-    ToggleBtn.ZIndex = 9999
-    ToggleBtn.Active = true
+local ToggleBtn = Instance.new("ImageButton")
+ToggleBtn.Name = "MobileToggle"
+ToggleBtn.Parent = AirflowWindow
+ToggleBtn.AnchorPoint = Vector2.new(1, 0)
+ToggleBtn.Position = UDim2.new(1, -8, 0, 40)
+ToggleBtn.Size = UDim2.new(0, 50, 0, 50)
+ToggleBtn.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+ToggleBtn.BackgroundTransparency = 0
+ToggleBtn.AutoButtonColor = true
+ToggleBtn.ZIndex = 9999
+ToggleBtn.Active = true
+ToggleBtn.Image = "rbxassetid://99232829949960"
+ToggleBtn.ScaleType = Enum.ScaleType.Fit
+ToggleBtn.ImageTransparency = 0
 
-    local corner = Instance.new("UICorner", ToggleBtn)
-    corner.CornerRadius = UDim.new(0, 12)
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 12)
+corner.Parent = ToggleBtn
 
-    local stroke = Instance.new("UIStroke", ToggleBtn)
-    stroke.Thickness = 2
-    stroke.Color = Color3.fromRGB(255, 255, 255)
-    stroke.Transparency = 0.1
+local stroke = Instance.new("UIStroke")
+stroke.Thickness = 2
+stroke.Color = Color3.fromRGB(255, 255, 255)
+stroke.Transparency = 0.1
+stroke.Parent = ToggleBtn
 
-    local dragging = false
-    local dragStart, startPos
+local dragging = false
+local dragStart, startPos
 
-    ToggleBtn.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragging = true
-            dragStart = input.Position
-            startPos = ToggleBtn.Position
-        end
-    end)
+ToggleBtn.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 
+	or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = ToggleBtn.Position
+	end
+end)
 
-    ToggleBtn.InputEnded:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragging = false
-        end
-    end)
+ToggleBtn.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 
+	or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = false
+	end
+end)
 
-    UserInputService.InputChanged:Connect(function(input)
-        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-            local delta = input.Position - dragStart
-            ToggleBtn.Position = UDim2.new(
-                startPos.X.Scale, startPos.X.Offset + delta.X,
-                startPos.Y.Scale, startPos.Y.Offset + delta.Y
-            )
-        end
-    end)
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and (
+		input.UserInputType == Enum.UserInputType.MouseMovement 
+		or input.UserInputType == Enum.UserInputType.Touch
+	) then
+		local delta = input.Position - dragStart
+		ToggleBtn.Position = UDim2.new(
+			startPos.X.Scale,
+			startPos.X.Offset + delta.X,
+			startPos.Y.Scale,
+			startPos.Y.Offset + delta.Y
+		)
+	end
+end)
 
-    ToggleBtn.MouseButton1Click:Connect(function()
-        Response.Toggle = not Response.Toggle
-        ToggleWindow(Response.Toggle)
-    end)
-end
+ToggleBtn.MouseButton1Click:Connect(function()
+	Response.Toggle = not Response.Toggle
+	ToggleWindow(Response.Toggle)
+end)
 
 	-- Toggle Button --
 	task.spawn(function()
