@@ -533,7 +533,7 @@ function Library:create_ui()
     Container.AnchorPoint = Vector2.new(0.5, 0.5)
     Container.Name = 'Container'
     Container.BackgroundTransparency = 0.05000000074505806
-    Container.BackgroundColor3 = Color3.fromRGB(30, 9, 9)
+    Container.BackgroundColor3 = Color3.fromRGB(5, 0, 0)
     Container.Position = UDim2.new(0.5, 0, 0.5, 0)
     Container.Size = UDim2.new(0, 0, 0, 0)
     Container.Active = true
@@ -998,7 +998,7 @@ function Library:create_ui()
             Module.Name = 'Module'
             Module.Size = UDim2.new(0, 241, 0, 93)
             Module.BorderSizePixel = 0
-            Module.BackgroundColor3 = Color3.fromRGB(30, 9, 9)
+            Module.BackgroundColor3 = Color3.fromRGB(5, 0, 0)
             Module.Parent = settings.section
 
             local UIListLayout = Instance.new('UIListLayout')
