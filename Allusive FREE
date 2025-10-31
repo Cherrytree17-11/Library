@@ -729,7 +729,7 @@ function Library:create_ui()
             }):Play()
         else
             TweenService:Create(Container, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                Size = UDim2.fromOffset(135, 52)
+                Size = UDim2.fromOffset(132, 52)
             }):Play()
         end
     end
