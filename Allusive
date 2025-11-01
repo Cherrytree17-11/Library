@@ -606,7 +606,7 @@ LogoBG.Parent = Container
     ClientName.FontFace = Font.new('rbxasset://fonts/families/GothamSSm.json', Enum.FontWeight.SemiBold, Enum.FontStyle.Normal)
     ClientName.TextColor3 = Color3.fromRGB(255, 0, 0)
     ClientName.TextTransparency = 0.20000000298023224
-    ClientName.Text = 'Dragon BETA'
+    ClientName.Text = 'Dragon'
     ClientName.Name = 'ClientName'
     ClientName.Size = UDim2.new(0, 31, 0, 13)
     ClientName.AnchorPoint = Vector2.new(0, 0.5)
@@ -752,7 +752,7 @@ LogoBG.Parent = Container
             }):Play()
         else
             TweenService:Create(Container, TweenInfo.new(0.5, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
-                Size = UDim2.fromOffset(130, 52)
+                Size = UDim2.fromOffset(104.5, 52)
             }):Play()
         end
     end
