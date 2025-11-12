@@ -34,7 +34,9 @@ local function updatePositions()
     end
 end
 
-function Notify:Create(title, message)
+function Notify:Create(title, message, duration)
+    local durationToUse = (type(duration) == "number" and duration >= 0) and duration or CONFIG.Duration
+
     local notification = Instance.new("Frame")
     notification.Name = "NotifyFrame"
     notification.Size = CONFIG.Size
@@ -85,7 +87,7 @@ function Notify:Create(title, message)
     TweenService:Create(titleLabel, TweenInfo.new(0.3), {TextTransparency = 0}):Play()
     TweenService:Create(messageLabel, TweenInfo.new(0.3), {TextTransparency = 0.2}):Play()
 
-    task.delay(CONFIG.Duration, function()
+    task.delay(durationToUse, function()
         TweenService:Create(notification, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
             Position = UDim2.new(1, 20, 0, notification.Position.Y.Offset)
         }):Play()
