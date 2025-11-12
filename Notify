@@ -34,7 +34,7 @@ local function updatePositions()
     end
 end
 
-function Notify:Create(iconId, title, message, duration)
+function Notify:Create(title, message, duration)
     local durationToUse = (type(duration) == "number" and duration >= 0) and duration or CONFIG.Duration
 
     local notification = Instance.new("Frame")
