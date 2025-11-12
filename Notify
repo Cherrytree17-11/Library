@@ -54,14 +54,6 @@ function Notify:Create(iconId, title, message, duration)
     accentBar.BorderSizePixel = 0
     accentBar.Parent = notification
 
-    local icon = Instance.new("ImageLabel")
-    icon.BackgroundTransparency = 1
-    icon.Size = UDim2.new(0, 20, 0, 20)
-    icon.Position = UDim2.new(0, 10, 0, 10)
-    icon.Image = iconId or ""
-    icon.ImageTransparency = icon.Image ~= "" and 1 or 1
-    icon.Parent = notification
-
     local titleLabel = Instance.new("TextLabel")
     titleLabel.BackgroundTransparency = 1
     titleLabel.Font = CONFIG.Font
@@ -69,7 +61,7 @@ function Notify:Create(iconId, title, message, duration)
     titleLabel.TextColor3 = CONFIG.TextColor
     titleLabel.TextXAlignment = Enum.TextXAlignment.Left
     titleLabel.Size = UDim2.new(1, -50, 0, 20)
-    titleLabel.Position = iconId and UDim2.new(0, 35, 0, 10) or UDim2.new(0, 15, 0, 10)
+    titleLabel.Position = iconId and UDim2.new(0, 15, 0, 10) or UDim2.new(0, 15, 0, 10)
     titleLabel.Text = title or "Notification"
     titleLabel.TextTransparency = 1
     titleLabel.Parent = notification
