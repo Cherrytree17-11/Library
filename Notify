@@ -34,7 +34,7 @@ local function updatePositions()
     end
 end
 
-function Notify:Create(title, message, duration)
+function Notify:Create(iconId, title, message, duration)
     local durationToUse = (type(duration) == "number" and duration >= 0) and duration or CONFIG.Duration
 
     local notification = Instance.new("Frame")
@@ -54,14 +54,22 @@ function Notify:Create(title, message, duration)
     accentBar.BorderSizePixel = 0
     accentBar.Parent = notification
 
+    local icon = Instance.new("ImageLabel")
+    icon.BackgroundTransparency = 1
+    icon.Size = UDim2.new(0, 20, 0, 20)
+    icon.Position = UDim2.new(0, 10, 0, 10)
+    icon.Image = iconId or ""
+    icon.ImageTransparency = icon.Image ~= "" and 1 or 1
+    icon.Parent = notification
+
     local titleLabel = Instance.new("TextLabel")
     titleLabel.BackgroundTransparency = 1
     titleLabel.Font = CONFIG.Font
     titleLabel.TextSize = CONFIG.TextSize
     titleLabel.TextColor3 = CONFIG.TextColor
     titleLabel.TextXAlignment = Enum.TextXAlignment.Left
-    titleLabel.Size = UDim2.new(1, -30, 0, 20)
-    titleLabel.Position = UDim2.new(0, 15, 0, 10)
+    titleLabel.Size = UDim2.new(1, -50, 0, 20)
+    titleLabel.Position = iconId and UDim2.new(0, 35, 0, 10) or UDim2.new(0, 15, 0, 10)
     titleLabel.Text = title or "Notification"
     titleLabel.TextTransparency = 1
     titleLabel.Parent = notification
@@ -78,6 +86,13 @@ function Notify:Create(title, message, duration)
     messageLabel.TextTransparency = 1
     messageLabel.Parent = notification
 
+    local progressBar = Instance.new("Frame")
+    progressBar.Size = UDim2.new(1, 0, 0, 3)
+    progressBar.Position = UDim2.new(0, 0, 1, -3)
+    progressBar.BackgroundColor3 = CONFIG.AccentColor
+    progressBar.BorderSizePixel = 0
+    progressBar.Parent = notification
+
     table.insert(activeNotifications, 1, notification)
     updatePositions()
 
@@ -86,15 +101,19 @@ function Notify:Create(title, message, duration)
     }):Play()
     TweenService:Create(titleLabel, TweenInfo.new(0.3), {TextTransparency = 0}):Play()
     TweenService:Create(messageLabel, TweenInfo.new(0.3), {TextTransparency = 0.2}):Play()
+    if iconId and iconId ~= "" then
+        TweenService:Create(icon, TweenInfo.new(0.3), {ImageTransparency = 0}):Play()
+    end
+    TweenService:Create(progressBar, TweenInfo.new(durationToUse, Enum.EasingStyle.Linear), {
+        Size = UDim2.new(0, 0, 0, 3)
+    }):Play()
 
     task.delay(durationToUse, function()
         TweenService:Create(notification, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
             Position = UDim2.new(1, 20, 0, notification.Position.Y.Offset)
         }):Play()
-
         task.wait(0.4)
         notification:Destroy()
-
         for i, n in ipairs(activeNotifications) do
             if n == notification then
                 table.remove(activeNotifications, i)
