@@ -607,7 +607,7 @@ function Library:create_ui()
     
     local UIGradient = Instance.new('UIGradient')
     UIGradient.Color = ColorSequence.new{
-        ColorSequenceKeypoint.new(0, Color3.fromRGB(137, 84, 122)),
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(157, 96, 136)),
         ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
     }
     UIGradient.Parent = ClientName
