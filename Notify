@@ -10,7 +10,7 @@ local CONFIG = {
     Size = UDim2.new(0, 350, 0, 70),
     BackgroundColor = Color3.fromRGB(0, 0, 0),
     TextColor = Color3.fromRGB(255, 255, 255),
-    AccentColor = Color3.fromRGB(255, 0, 255),
+    AccentColor = Color3.fromRGB(255, 0, 0),
     Font = Enum.Font.GothamBold,
     TextSize = 16,
 }
