@@ -3991,11 +3991,11 @@ function Airflow:Init(config)
 			})
 
 			Airflow:CreateAnimation(LineH,0.45,nil,{
-				BackgroundTransparency = 0.5;
+				BackgroundTransparency = 1.0;
 			})
 
 			Airflow:CreateAnimation(LineV,0.45,nil,{
-				BackgroundTransparency = 0.5;
+				BackgroundTransparency = 1.0;
 			})
 
 			Airflow:CreateAnimation(UIStroke,0.45,nil,{
@@ -4098,7 +4098,7 @@ function Airflow:Init(config)
 	WindowFrame.Name = Airflow:RandomString()
 	WindowFrame.Parent = AirflowWindow
 	WindowFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-	WindowFrame.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
+	WindowFrame.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
 	WindowFrame.BackgroundTransparency = 1
 	WindowFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	WindowFrame.BorderSizePixel = 0
@@ -4106,7 +4106,7 @@ function Airflow:Init(config)
 	WindowFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 	WindowFrame.Size = UDim2.new(config.Scale.X.Scale,config.Scale.X.Offset - 50,config.Scale.Y.Scale,config.Scale.Y.Offset - 50);
 
-	UICorner.CornerRadius = UDim.new(0, 2)
+	UICorner.CornerRadius = UDim.new(0, 4)
 	UICorner.Parent = WindowFrame
 
 	MainFrame.Name = Airflow:RandomString()
