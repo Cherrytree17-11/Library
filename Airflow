@@ -3983,11 +3983,11 @@ function Airflow:Init(config)
 
 			Airflow:CreateAnimation(WindowFrame,0.5,nil,{
 				Size = config.Scale;
-				BackgroundTransparency = 0.600;
+				BackgroundTransparency = 0.200;
 			})
 
 			Airflow:CreateAnimation(MainFrame,0.45,nil,{
-				BackgroundTransparency = 0.3;
+				BackgroundTransparency = 0.1;
 			})
 
 			Airflow:CreateAnimation(LineH,0.45,nil,{
@@ -4015,7 +4015,7 @@ function Airflow:Init(config)
 			})
 
 			Airflow:CreateAnimation(windowName,0.7,nil,{
-				TextTransparency = 0.4;
+				TextTransparency = 0;
 			})
 
 			if Response.OpenedTab then
@@ -4112,7 +4112,7 @@ function Airflow:Init(config)
 	MainFrame.Name = Airflow:RandomString()
 	MainFrame.Parent = WindowFrame
 	MainFrame.AnchorPoint = Vector2.new(0, 1)
-	MainFrame.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
+	MainFrame.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
 	MainFrame.BackgroundTransparency = 1
 	MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	MainFrame.BorderSizePixel = 0
