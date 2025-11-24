@@ -2007,7 +2007,7 @@ function Airflow:Elements(element : Frame,OnChange : BindableEvent , windowConfi
 		block.Name = Airflow:RandomString()
 		block.Parent = ToggleFrame
 		block.AnchorPoint = Vector2.new(1, 0.5)
-		block.BackgroundColor3 = Color3.fromRGB(50, 0, 0)
+		block.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
 		block.BackgroundTransparency = 1
 		block.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		block.BorderSizePixel = 0
@@ -2055,10 +2055,18 @@ function Airflow:Elements(element : Frame,OnChange : BindableEvent , windowConfi
 					BackgroundColor3 = windowConfig.Hightlight or Color3.fromRGB(255, 0, 0),
 					Position = UDim2.new(0.75, 0, 0.5, 0)
 				});
+
+                Airflow:CreateAnimation(block,0.5,nil,{
+					BackgroundColor3 = windowConfig.Hightlight or Color3.fromRGB(50, 0, 0),
+				});
 			else
 				Airflow:CreateAnimation(circle,0.5,nil,{
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					Position = UDim2.new(0.25, 0, 0.5, 0)
+				});
+
+                Airflow:CreateAnimation(block,0.5,nil,{
+					BackgroundColor3 = windowConfig.Hightlight or Color3.fromRGB(150, 150, 150),
 				});
 			end;
 		end;
