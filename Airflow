@@ -2007,7 +2007,7 @@ function Airflow:Elements(element : Frame,OnChange : BindableEvent , windowConfi
 		block.Name = Airflow:RandomString()
 		block.Parent = ToggleFrame
 		block.AnchorPoint = Vector2.new(1, 0.5)
-		block.BackgroundColor3 = Color3.fromRGB(36, 35, 35)
+		block.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
 		block.BackgroundTransparency = 1
 		block.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		block.BorderSizePixel = 0
@@ -4098,7 +4098,7 @@ function Airflow:Init(config)
 	WindowFrame.Name = Airflow:RandomString()
 	WindowFrame.Parent = AirflowWindow
 	WindowFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-	WindowFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+	WindowFrame.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
 	WindowFrame.BackgroundTransparency = 1
 	WindowFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	WindowFrame.BorderSizePixel = 0
@@ -4112,7 +4112,7 @@ function Airflow:Init(config)
 	MainFrame.Name = Airflow:RandomString()
 	MainFrame.Parent = WindowFrame
 	MainFrame.AnchorPoint = Vector2.new(0, 1)
-	MainFrame.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
+	MainFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
 	MainFrame.BackgroundTransparency = 1
 	MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	MainFrame.BorderSizePixel = 0
