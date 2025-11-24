@@ -2057,7 +2057,7 @@ function Airflow:Elements(element : Frame,OnChange : BindableEvent , windowConfi
 				});
 
                 Airflow:CreateAnimation(block,0.5,nil,{
-					BackgroundColor3 = windowConfig.Hightlight or Color3.fromRGB(50, 0, 0),
+					BackgroundColor3 = Color3.fromRGB(50, 0, 0),
 				});
 			else
 				Airflow:CreateAnimation(circle,0.5,nil,{
