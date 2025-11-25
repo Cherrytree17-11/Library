@@ -2847,13 +2847,13 @@ function Airflow:Elements(element : Frame,OnChange : BindableEvent , windowConfi
 		block.Name = Airflow:RandomString()
 		block.Parent = TextboxFrame
 		block.AnchorPoint = Vector2.new(1, 0.5)
-		block.BackgroundColor3 = Color3.fromRGB(36, 35, 35)
+		block.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 		block.BackgroundTransparency = 1
 		block.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		block.BorderSizePixel = 0
 		block.ClipsDescendants = true
 		block.Position = UDim2.new(1, -10, 0.5, 0)
-		block.Size = UDim2.new(0, 125, 0, 30)
+		block.Size = UDim2.new(0, 150, 0, 30)
 		block.ZIndex = 7
 
 		UICorner_2.CornerRadius = UDim.new(0, 4)
