@@ -1006,7 +1006,7 @@ function Library:create_ui()
             Module.Name = 'Module'
             Module.Size = UDim2.new(0, 241, 0, 93)
             Module.BorderSizePixel = 0
-            Module.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Module.BackgroundColor3 = Color3.fromRGB(28, 21, 30)
             Module.Parent = settings.section
 
             local UIListLayout = Instance.new('UIListLayout')
